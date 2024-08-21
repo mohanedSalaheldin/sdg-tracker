@@ -14,15 +14,19 @@ class MyApp extends StatelessWidget {
       title: 'Sudanese Pound',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: "BalooBhaijaan2",
-        scaffoldBackgroundColor: AppColors.blackBackgroundColor,
-        appBarTheme: const AppBarTheme(
-          color: AppColors.blackBackgroundColor,
-        ),
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          brightness: Brightness.dark,
+          fontFamily: "BalooBhaijaan2",
+          scaffoldBackgroundColor: AppColors.blackBackgroundColor,
+          appBarTheme: const AppBarTheme(
+            color: AppColors.blackBackgroundColor,
+          ),
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            selectedItemColor: AppColors.greenColor,
+            unselectedItemColor: Colors.black,
+          )),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
