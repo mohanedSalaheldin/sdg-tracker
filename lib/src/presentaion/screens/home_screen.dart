@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:sudanese_currency/generated/l10n.dart';
+
 import 'package:sudanese_currency/src/presentaion/widgets/exchange_rate_chart_widget.dart';
-import 'package:sudanese_currency/src/shared/app_colors.dart';
-import 'package:sudanese_currency/src/shared/constants.dart';
 
 import '../widgets/summary_ststisics_widget.dart';
 import '../widgets/today_exchange_rate_widget.dart';

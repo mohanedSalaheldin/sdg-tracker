@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sudanese_currency/src/presentaion/screens/home_screen.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
 class SummaryStstisicsWidget extends StatelessWidget {

@@ -129,7 +129,7 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
 
   /// used to return LineChartData that contain exact data
   LineChartData mainData() {
-    var flLinesColor = const Color.fromARGB(255, 59, 59, 59);
+    // var flLinesColor = const Color.fromARGB(255, 59, 59, 59);
     const spots = [
       FlSpot(0, 54.71),
       FlSpot(1, 53.08),
@@ -194,8 +194,6 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
           left: BorderSide(color: Color.fromARGB(255, 39, 41, 42)),
           bottom: BorderSide(color: Color.fromARGB(255, 39, 41, 42)),
         ),
-
-        //  Border.(),
       ),
       minX: 0,
       maxX: 9,
@@ -206,9 +204,7 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
           spots: spots,
           isCurved: true,
           color: AppColors.greenColor,
-          // gradient: LinearGradient(
-          //   colors: gradientColors,
-          // ),
+
           barWidth: 1.5,
           isStrokeCapRound: true,
           dotData: const FlDotData(show: false),
