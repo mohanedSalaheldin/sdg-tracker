@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:sudanese_currency/src/presentaion/widgets/exchange_rate_chart_widget.dart';
-
+import '../widgets/exchange_rate_chart_widget.dart';
 import '../widgets/summary_ststisics_widget.dart';
 import '../widgets/today_exchange_rate_widget.dart';
 
@@ -10,18 +8,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appbar(),
-      bottomNavigationBar: bottomNavBar(),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(width: double.infinity),
-          TodayExchangeRateWidget(),
-          LastDaysLineChartWidget(),
-          SummaryStstisicsWidget(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        // appBar: appbar(),
+        bottomNavigationBar: bottomNavBar(),
+        // backgroundColor: const Color(0xff101014),2.0
+        body: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(width: double.infinity),
+            TodayExchangeRateWidget(),
+            LastDaysLineChartWidget(),
+            SummaryStstisicsWidget(),
+          ],
+        ),
       ),
     );
   }

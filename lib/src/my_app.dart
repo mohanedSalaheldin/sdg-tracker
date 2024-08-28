@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/generated/l10n.dart';
+import 'package:sudanese_currency/src/presentaion/screens/calculator_screen.dart';
 import 'package:sudanese_currency/src/presentaion/screens/home_screen.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
+import 'package:sudanese_currency/src/shared/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,32 +13,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sudanese Pound',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          brightness: Brightness.dark,
-          fontFamily: "BalooBhaijaan2",
-          scaffoldBackgroundColor: AppColors.blackBackgroundColor,
-          appBarTheme: const AppBarTheme(
-            color: AppColors.blackBackgroundColor,
-          ),
-          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Colors.white,
-            selectedItemColor: AppColors.greenColor,
-            unselectedItemColor: Colors.black,
-          )),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('en'),
-      home: const HomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      child: MaterialApp(
+        title: 'Sudanese Pound',
+        debugShowCheckedModeBanner: false,
+        theme: getAppTheme(),
+        localizationsDelegates: getLocalizationDeledates,
+        supportedLocales: S.delegate.supportedLocales,
+        locale: const Locale('en'),
+        home: CalculatorScreen(),
+      ),
     );
+  }
+
+  List<LocalizationsDelegate<dynamic>> get getLocalizationDeledates {
+    return const [
+      S.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ];
   }
 }

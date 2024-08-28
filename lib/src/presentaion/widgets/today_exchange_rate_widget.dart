@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
@@ -9,7 +10,7 @@ class TodayExchangeRateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: appDefaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: appDefaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,9 +21,9 @@ class TodayExchangeRateWidget extends StatelessWidget {
                 .bodySmall!
                 .copyWith(color: Colors.grey),
           ),
-          const Text(
+          Text(
             '\$4,285.08',
-            style: TextStyle(fontSize: 32.0, color: Colors.white),
+            style: TextStyle(fontSize: 32.0.sp, color: Colors.white),
           ),
           const Gap(5.0),
           Container(
@@ -43,7 +44,7 @@ class TodayExchangeRateWidget extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall!
-                      .copyWith(color: AppColors.greenColor, fontSize: 14),
+                      .copyWith(color: AppColors.greenColor, fontSize: 14.sp),
                 ),
               ],
             ),

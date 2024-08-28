@@ -10,16 +10,13 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.6
-  # for LineChart (statestical tracking)
   fl_chart: ^0.68.0
   flutter:
     sdk: flutter
-  # for add multilanguage
   flutter_localizations:
     sdk: flutter
-  # for vertical and horizental gap instead of Sizedbox
+  flutter_screenutil: ^5.9.3
   gap: ^3.0.1
-  # syncfusion_flutter_charts: ^26.2.9
 
 dev_dependencies:
   flutter_lints: ^3.0.0

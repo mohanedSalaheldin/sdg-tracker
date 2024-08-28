@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
 import '../../shared/app_colors.dart';
@@ -28,11 +29,11 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: appDefaultPadding),
+      padding:  EdgeInsets.symmetric(horizontal: appDefaultPadding),
       child: Stack(
         children: <Widget>[
           AspectRatio(
-            aspectRatio: 1.40,
+            aspectRatio: 1.50.sp,
             child: Padding(
               padding:
                   const EdgeInsets.only(right: 0, left: 0, top: 30, bottom: 0),
@@ -204,7 +205,6 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
           spots: spots,
           isCurved: true,
           color: AppColors.greenColor,
-
           barWidth: 1.5,
           isStrokeCapRound: true,
           dotData: const FlDotData(show: false),
