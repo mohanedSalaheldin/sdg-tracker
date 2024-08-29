@@ -22,6 +22,11 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: getLocalizationDeledates,
         supportedLocales: S.delegate.supportedLocales,
         locale: const Locale('en'),
+        // home: Center(
+        //   child: ConstrainedBox(
+        //       constraints: const BoxConstraints(maxWidth: ),
+        //       child: CalculatorScreen(),),
+        // ),
         home: CalculatorScreen(),
       ),
     );
