@@ -7,7 +7,10 @@ import 'package:sudanese_currency/src/presentaion/screens/home_screen.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/app_theme.dart';
 
+import 'presentaion/screens/data_entry_screen.dart';
+
 class MyApp extends StatelessWidget {
+  
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         //       constraints: const BoxConstraints(maxWidth: ),
         //       child: CalculatorScreen(),),
         // ),
-        home: CalculatorScreen(),
+        home: DataEntryScreen(),
       ),
     );
   }

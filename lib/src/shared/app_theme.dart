@@ -13,7 +13,7 @@ ThemeData getAppTheme() {
       useMaterial3: true,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
-        selectedItemColor: AppColors.greenColor,
-        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Color.fromARGB(255, 64, 64, 64),
       ));
 }
