@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         // appBar: appbar(),
-        bottomNavigationBar: bottomNavBar(),
+        
         // backgroundColor: const Color(0xff101014),2.0
         body: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,30 +28,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  BottomNavigationBar bottomNavBar() {
-    return BottomNavigationBar(
-      iconSize: 30,
-      currentIndex: 1,
-      items: const [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Iconsax.home_trend_up_copy,
-              // color: Colors.black,
-            ),
-            label: 'To'),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Iconsax.money_change_copy,
-            ),
-            label: 'Tan 2'),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Iconsax.arrange_square_copy,
-            ),
-            label: 'Tan 2'),
-      ],
-    );
-  }
+  
 
   AppBar appbar() {
     return AppBar(

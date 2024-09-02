@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/main.dart';
 import 'package:sudanese_currency/src/presentaion/widgets/cash_text_from_field.dart';
-import 'package:sudanese_currency/src/presentaion/widgets/swap_buttom_widget.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DataEntryScreen extends StatelessWidget {
   DataEntryScreen({super.key});

@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
-import 'package:sudanese_currency/src/shared/screen_sizes.dart';
 
 import 'cash_text_from_field.dart';
 
 class SawpCalculationAreaWidget extends StatefulWidget {
-  const SawpCalculationAreaWidget({
-    super.key,
-  });
+  const SawpCalculationAreaWidget({super.key});
 
   @override
   State<SawpCalculationAreaWidget> createState() =>
@@ -22,7 +18,6 @@ class _SawpCalculationAreaWidgetState extends State<SawpCalculationAreaWidget> {
   late TextEditingController outputController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     inputController = TextEditingController();
     outputController = TextEditingController();
@@ -30,7 +25,6 @@ class _SawpCalculationAreaWidgetState extends State<SawpCalculationAreaWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     inputController.dispose();
     outputController.dispose();
     super.dispose();
