@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:sudanese_currency/src/models/exchage_rate.dart';
+import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/providers/layout_provider.dart';
 
 class LayoutScreen extends ConsumerWidget {
@@ -9,9 +11,14 @@ class LayoutScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLayout = ref.watch(layoutScreenProvider);
-    return Scaffold(
-      bottomNavigationBar: bottomNavBar(ref),
-      body: screens[currentLayout],
+    final exRatesProvider = ref.watch(exchageRatesProvider);
+    return exRatesProvider.when(
+      data: (data) => Scaffold(
+        bottomNavigationBar: bottomNavBar(ref),
+        body: screens[currentLayout],
+      ),
+      error: (error, stackTrace) => Text(error.toString()),
+      loading: () => const CircularProgressIndicator(),
     );
   }
 

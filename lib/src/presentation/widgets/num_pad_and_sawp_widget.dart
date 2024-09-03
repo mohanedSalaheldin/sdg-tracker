@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sudanese_currency/src/presentaion/widgets/numbers_pad_widget.dart';
-import 'package:sudanese_currency/src/presentaion/widgets/swap_buttom_widget.dart';
+import 'package:sudanese_currency/src/presentation/widgets/numbers_pad_widget.dart';
+import 'package:sudanese_currency/src/presentation/widgets/swap_buttom_widget.dart';
+
 import 'package:sudanese_currency/src/shared/constants.dart';
 
 class NumPadAndSawpWidget extends StatelessWidget {

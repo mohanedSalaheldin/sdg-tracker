@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sudanese_currency/main.dart';
-import 'package:sudanese_currency/src/presentaion/widgets/cash_text_from_field.dart';
+import 'package:sudanese_currency/src/presentation/widgets/cash_text_from_field.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
@@ -46,9 +45,9 @@ class DataEntryScreen extends StatelessWidget {
                   double firsVal = double.parse(firstValueCtrl.text);
                   double secondVal = double.parse(secondValueCtrl.text);
                   double res = (firsVal + secondVal) / 2;
-                  final response = await supabase.from('exchage_rates').insert([
-                    {'today_exchage_rate': res.toDouble()}
-                  ]);
+                  // final response = await supabase.from('exchage_rates').insert([
+                  //   {'today_exchage_rate': res.toDouble()}
+                  // ]);
                 },
                 child: Text(
                   'Save',

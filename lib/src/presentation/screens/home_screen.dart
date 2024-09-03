@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 import '../widgets/exchange_rate_chart_widget.dart';
 import '../widgets/summary_ststisics_widget.dart';
 import '../widgets/today_exchange_rate_widget.dart';
@@ -9,12 +9,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         // appBar: appbar(),
-        
+
         // backgroundColor: const Color(0xff101014),2.0
-        body: const Column(
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -27,8 +27,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  
 
   AppBar appbar() {
     return AppBar(

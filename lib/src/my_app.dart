@@ -3,8 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/generated/l10n.dart';
-import 'package:sudanese_currency/src/presentaion/screens/home_screen.dart';
-import 'package:sudanese_currency/src/presentaion/screens/layout_screen.dart';
+import 'package:sudanese_currency/src/presentation/screens/home_screen.dart';
+import 'package:sudanese_currency/src/presentation/screens/layout_screen.dart';
 import 'package:sudanese_currency/src/shared/app_theme.dart';
 
 class MyApp extends StatelessWidget {
