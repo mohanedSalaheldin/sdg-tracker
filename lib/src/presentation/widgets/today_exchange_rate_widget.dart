@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
-class TodayExchangeRateWidget extends StatelessWidget {
+class TodayExchangeRateWidget extends ConsumerWidget {
   const TodayExchangeRateWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final titleData = ref.watch(titleDataProvider);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: appDefaultPadding),
       child: Column(
@@ -22,12 +25,11 @@ class TodayExchangeRateWidget extends StatelessWidget {
                 .copyWith(color: Colors.grey),
           ),
           Text(
-            '\$4,285.08',
+            '\$${titleData.exchangeRate}',
             style: TextStyle(fontSize: 32.0.sp, color: Colors.white),
           ),
           const Gap(5.0),
           Container(
-            // width: 0,
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             decoration: BoxDecoration(
@@ -37,14 +39,22 @@ class TodayExchangeRateWidget extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.arrow_upward,
-                    size: 17, color: AppColors.greenColor),
+                Icon(
+                  isPositive(titleData.increaseRate)
+                      ? Icons.arrow_upward
+                      : Icons.arrow_downward,
+                  size: 17,
+                  color: isPositive(titleData.increaseRate)
+                      ? AppColors.greenColor
+                      : Colors.redAccent,
+                ),
                 Text(
-                  '-0.090',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: AppColors.greenColor, fontSize: 14.sp),
+                  titleData.increaseRate,
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: isPositive(titleData.increaseRate)
+                          ? AppColors.greenColor
+                          : Colors.redAccent,
+                      fontSize: 14.sp),
                 ),
               ],
             ),
@@ -52,5 +62,9 @@ class TodayExchangeRateWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool isPositive(String rate) {
+    return (double.parse(rate) >= 0);
   }
 }

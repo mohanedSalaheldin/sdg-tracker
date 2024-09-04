@@ -1,27 +1,27 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
+import '../../providers/exchange_rates_provider.dart';
 import '../../shared/app_colors.dart';
 
-class LastDaysLineChartWidget extends StatefulWidget {
+class LastDaysLineChartWidget extends ConsumerStatefulWidget {
   const LastDaysLineChartWidget({super.key});
 
   @override
-  State<LastDaysLineChartWidget> createState() =>
+  ConsumerState<LastDaysLineChartWidget> createState() =>
       _LastDaysLineChartWidgetState();
 }
 
-class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
+class _LastDaysLineChartWidgetState
+    extends ConsumerState<LastDaysLineChartWidget> {
   List<Color> gradientColors = [
-    // Colors.cyan,
-    // Colors.red
     AppColors.greenColor,
     AppColors.greenColorTranspernt,
     AppColors.greenColorTranspernt,
     Colors.transparent
-    // AppColors.contentColorBlue,
   ];
 
   bool showAvg = false;
@@ -29,7 +29,7 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: appDefaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: appDefaultPadding),
       child: Stack(
         children: <Widget>[
           AspectRatio(
@@ -48,10 +48,7 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      // fontWeight: FontWeight.bold,
-      fontSize: 12,
-    );
+    const style = TextStyle(fontSize: 12);
     Widget text;
 
     switch (value.toInt()) {
@@ -128,21 +125,20 @@ class _LastDaysLineChartWidgetState extends State<LastDaysLineChartWidget> {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
-  /// used to return LineChartData that contain exact data
   LineChartData mainData() {
-    // var flLinesColor = const Color.fromARGB(255, 59, 59, 59);
-    const spots = [
-      FlSpot(0, 54.71),
-      FlSpot(1, 53.08),
-      FlSpot(2, 53.12),
-      FlSpot(3, 54.79),
-      FlSpot(4, 54.4),
-      FlSpot(5, 52.62),
-      FlSpot(6, 53.87),
-      FlSpot(7, 51.23),
-      FlSpot(8, 53.37),
-      FlSpot(9, 52.42)
-    ];
+    final spots = ref.watch(flSpotProvider);
+    // const spots = [
+    //   FlSpot(0, 54.71),
+    //   FlSpot(1, 53.08),
+    //   FlSpot(2, 53.12),
+    //   FlSpot(3, 54.79),
+    //   FlSpot(4, 54.4),
+    //   FlSpot(5, 52.62),
+    //   FlSpot(6, 53.87),
+    //   FlSpot(7, 51.23),
+    //   FlSpot(8, 53.37),
+    //   FlSpot(9, 52.42)
+    // ];
     return LineChartData(
       lineTouchData: const LineTouchData(
         longPressDuration: Duration(milliseconds: 100),

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 import 'monthy_statistics_widget.dart';
 
-class SummaryStstisicsWidget extends StatelessWidget {
-  const SummaryStstisicsWidget({super.key});
+class SummaryStatisicsWidget extends ConsumerWidget {
+  const SummaryStatisicsWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final statisticProvider = ref.watch(summaryStatisicsProvider);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -29,23 +32,23 @@ class SummaryStstisicsWidget extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            const MonthyStatisticsWidget(
+            MonthyStatisticsWidget(
               title: 'Higher',
               iconPath: 'higher.png',
-              value: '55.639',
-              date: '21/08',
+              value: statisticProvider.higher.todayExchangeRate.toString(),
+              date: statisticProvider.higher.createdAt.toString(),
             ),
-            const MonthyStatisticsWidget(
+            MonthyStatisticsWidget(
               title: 'Avarage',
               iconPath: 'avg.png',
-              value: '55.639',
+              value: statisticProvider.avg,
               date: '----',
             ),
-            const MonthyStatisticsWidget(
+            MonthyStatisticsWidget(
               title: 'Lower',
               iconPath: 'lower.png',
-              value: '52.985',
-              date: '28/08',
+              value: statisticProvider.lower.todayExchangeRate.toString(),
+              date: statisticProvider.lower.createdAt.toString(),
             ),
           ],
         ),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../widgets/exchange_rate_chart_widget.dart';
 import '../widgets/summary_ststisics_widget.dart';
 import '../widgets/today_exchange_rate_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return const SafeArea(
       child: Scaffold(
         // appBar: appbar(),
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(width: double.infinity),
             TodayExchangeRateWidget(),
             LastDaysLineChartWidget(),
-            SummaryStstisicsWidget(),
+            SummaryStatisicsWidget(),
           ],
         ),
       ),
