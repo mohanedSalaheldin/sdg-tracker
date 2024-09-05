@@ -48,39 +48,40 @@ class _LastDaysLineChartWidgetState
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    final dateList = ref.watch(dateListProvider);
     const style = TextStyle(fontSize: 12);
     Widget text;
 
     switch (value.toInt()) {
       case 0:
-        text = const Text('20', style: style);
+        text = Text(dateList[9], style: style);
         break;
       case 1:
-        text = const Text('21', style: style);
+        text = Text(dateList[8], style: style);
         break;
       case 2:
-        text = const Text('22', style: style);
+        text = Text(dateList[7], style: style);
         break;
       case 3:
-        text = const Text('23', style: style);
+        text = Text(dateList[6], style: style);
         break;
       case 4:
-        text = const Text('24', style: style);
+        text = Text(dateList[5], style: style);
         break;
       case 5:
-        text = const Text('25', style: style);
+        text = Text(dateList[4], style: style);
         break;
       case 6:
-        text = const Text('26', style: style);
+        text = Text(dateList[3], style: style);
         break;
       case 7:
-        text = const Text('27', style: style);
+        text = Text(dateList[2], style: style);
         break;
       case 8:
-        text = const Text('28', style: style);
+        text = Text(dateList[1], style: style);
         break;
       case 9:
-        text = const Text('29', style: style);
+        text = Text(dateList[0], style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -115,8 +116,8 @@ class _LastDaysLineChartWidgetState
       case 54:
         text = '54';
         break;
-      case 55:
-        text = '55';
+      case 56:
+        text = '56';
         break;
       default:
         return Container();
@@ -127,18 +128,7 @@ class _LastDaysLineChartWidgetState
 
   LineChartData mainData() {
     final spots = ref.watch(flSpotProvider);
-    // const spots = [
-    //   FlSpot(0, 54.71),
-    //   FlSpot(1, 53.08),
-    //   FlSpot(2, 53.12),
-    //   FlSpot(3, 54.79),
-    //   FlSpot(4, 54.4),
-    //   FlSpot(5, 52.62),
-    //   FlSpot(6, 53.87),
-    //   FlSpot(7, 51.23),
-    //   FlSpot(8, 53.37),
-    //   FlSpot(9, 52.42)
-    // ];
+    final statisticProvider = ref.watch(summaryStatisicsProvider);
     return LineChartData(
       lineTouchData: const LineTouchData(
         longPressDuration: Duration(milliseconds: 100),
@@ -177,10 +167,15 @@ class _LastDaysLineChartWidgetState
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
+            interval: 2,
             showTitles: true,
-            // interval: 1,
-            getTitlesWidget: leftTitleWidgets,
-
+            getTitlesWidget: (value, meta) {
+              return Text(value.toInt().toString(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.left);
+            },
             reservedSize: 30,
           ),
         ),
@@ -194,8 +189,9 @@ class _LastDaysLineChartWidgetState
       ),
       minX: 0,
       maxX: 9,
-      minY: 50,
-      maxY: 57,
+      minY: (statisticProvider.lower.todayExchangeRate).toInt() - 1
+      ,
+      maxY: (statisticProvider.higher.todayExchangeRate).toInt() + 1,
       lineBarsData: [
         LineChartBarData(
           spots: spots,

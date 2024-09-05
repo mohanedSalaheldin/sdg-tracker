@@ -5,7 +5,8 @@ import 'package:sudanese_currency/src/shared/app_colors.dart';
 
 class CashTextFromField extends StatelessWidget {
   const CashTextFromField({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
   final TextEditingController controller;
 
@@ -18,7 +19,7 @@ class CashTextFromField extends StatelessWidget {
         controller: controller,
         cursorColor: AppColors.greenColor,
         style: TextStyle(
-          fontSize: 32.sp,
+          fontSize: 30.sp,
         ),
         decoration: const InputDecoration(
           border: UnderlineInputBorder(

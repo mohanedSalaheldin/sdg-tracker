@@ -3,11 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/app_colors.dart';
 import '../../shared/constants.dart';
 import '../widgets/num_pad_and_sawp_widget.dart';
-import '../widgets/sawp_calculation_area_widget.dart';
+import '../widgets/calculation_input_output_area_widget.dart';
 
-class CalculatorScreen extends StatelessWidget {
+class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
 
+  @override
+  State<CalculatorScreen> createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,8 +22,7 @@ class CalculatorScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           
-            const SawpCalculationAreaWidget(),
+            const CalculationInputOutputWidget(),
             Expanded(
               flex: 3,
               child: Container(

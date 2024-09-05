@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NumbersPadWidget extends StatelessWidget {
+import '../../providers/calculator_screen_providers.dart';
+
+class NumbersPadWidget extends ConsumerWidget {
   const NumbersPadWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final inputController = ref.watch(inputTxtControllerProvider);
+    final outputController = ref.watch(outputTxtControllerProvider);
     final List buttons = [
       "1",
       "2",
@@ -35,21 +40,51 @@ class NumbersPadWidget extends StatelessWidget {
         children: List.generate(
           buttons.length,
           (index) => InkWell(
-            onTap: () {},
+            onTap: () {
+              if (!_isLastButton(index)) {
+                inputController.text = inputController.text + buttons[index];
+              } else {
+                inputController.text = inputController.text
+                    .substring(0, inputController.text.length - 1);
+              }
+              if (inputController.text.isNotEmpty) {
+                outputController.text =
+                    (double.parse(inputController.text) / 55)
+                        .toStringAsFixed(2);
+              } else {
+                outputController.text = "";
+              }
+            },
             child: CircleAvatar(
               backgroundColor: Colors.white,
-              child: Text(
-                buttons[index],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 28.sp,
-                ),
-              ),
+              child: _isLastButton(index)
+                  ? _buildBackIcon()
+                  : _buildNumerKey(buttons, index),
             ),
           ),
         ),
       ),
     );
   }
+
+  Text _buildNumerKey(List<dynamic> buttons, int index) {
+    return Text(
+      buttons[index],
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontSize: 28.sp,
+      ),
+    );
+  }
+
+  Icon _buildBackIcon() {
+    return Icon(
+      Icons.arrow_back,
+      size: 30.sp,
+      color: Colors.black,
+    );
+  }
+
+  bool _isLastButton(int index) => index == 11;
 }

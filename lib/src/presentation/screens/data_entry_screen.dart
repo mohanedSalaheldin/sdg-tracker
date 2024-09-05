@@ -4,10 +4,24 @@ import 'package:sudanese_currency/src/presentation/widgets/cash_text_from_field.
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
-class DataEntryScreen extends StatelessWidget {
-  DataEntryScreen({super.key});
+class DataEntryScreen extends StatefulWidget {
+  const DataEntryScreen({super.key});
+
+  @override
+  State<DataEntryScreen> createState() => _DataEntryScreenState();
+}
+
+class _DataEntryScreenState extends State<DataEntryScreen> {
+  
   final TextEditingController firstValueCtrl = TextEditingController();
   final TextEditingController secondValueCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    firstValueCtrl.dispose();
+    secondValueCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

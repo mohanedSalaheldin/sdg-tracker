@@ -5,8 +5,9 @@ import 'package:sudanese_currency/src/shared/constants.dart';
 class SwapButtomWidget extends StatelessWidget {
   const SwapButtomWidget({
     super.key,
+    required this.onPressed,
   });
-
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +22,7 @@ class SwapButtomWidget extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: MaterialButton(
         color: Colors.black,
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

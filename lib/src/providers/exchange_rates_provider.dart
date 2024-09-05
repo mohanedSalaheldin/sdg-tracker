@@ -10,7 +10,7 @@ final exchageRatesProvider = FutureProvider<List<ExchageRate>>(
   (ref) async {
     DatabaseServices dbServices = GetIt.instance.get<DatabaseServices>();
     List<ExchageRate> res = await dbServices.getLastTenExchageRate();
-    print(res.length);
+    res.sort((a, b) => a.createdAt.compareTo(b.createdAt));
     return res;
   },
 );
@@ -34,12 +34,11 @@ final titleDataProvider = Provider<TitleData>((ref) {
   final rates = ref.watch(exchageRatesProvider);
   TitleData titleData = TitleData(exchangeRate: 0, increaseRate: '0');
   rates.when(
-    data: (data) {
-      titleData = _caculateTitlteValues(data);
-    },
-    error: (error, stackTrace) {},
-    loading: () {},
-  );
+      data: (data) {
+        titleData = _caculateTitlteValues(data);
+      },
+      error: (error, stackTrace) {},
+      loading: () {});
   return titleData;
 });
 
@@ -53,8 +52,6 @@ TitleData _caculateTitlteValues(List<ExchageRate> data) {
       increaseRate: increaseRate.toStringAsFixed(3));
 }
 
-
-
 final summaryStatisicsProvider = Provider<SummaryStatisics>((ref) {
   final rates = ref.watch(exchageRatesProvider);
 
@@ -64,21 +61,47 @@ final summaryStatisicsProvider = Provider<SummaryStatisics>((ref) {
       SummaryStatisics(avg: '0', higher: emptyObject, lower: emptyObject);
 
   rates.when(
-    data: (ratesData) {
-      ratesData
-          .sort((a, b) => b.todayExchangeRate.compareTo(a.todayExchangeRate));
+      data: (ratesData) {
+        ratesData
+            .sort((a, b) => b.todayExchangeRate.compareTo(a.todayExchangeRate));
 
-      statisics = SummaryStatisics(
-          avg: _calcAvg(ratesData),
-          higher: ratesData.first,
-          lower: ratesData.last);
-    },
-    error: (error, stackTrace) {},
-    loading: () {},
-  );
+        statisics = SummaryStatisics(
+            avg: _calcAvg(ratesData),
+            higher: ratesData.first,
+            lower: ratesData.last);
+      },
+      error: (error, stackTrace) {},
+      loading: () {});
   return statisics;
 });
 
 String _calcAvg(List<ExchageRate> ratesData) =>
     ((ratesData.first.todayExchangeRate + ratesData.last.todayExchangeRate) / 2)
         .toString();
+final datesProvider = Provider<List<String>>((ref) {
+  final rates = ref.watch(exchageRatesProvider);
+  List<String> dates = [];
+  rates.when(
+      data: (data) {
+        for (var i = 0; i < data.length; i++) {
+          dates.add(data[i].createdAt.day.toString());
+        }
+      },
+      error: (error, stackTrace) {},
+      loading: () {});
+  return dates;
+});
+
+final dateListProvider = Provider<List<String>>((ref) {
+  final rates = ref.watch(exchageRatesProvider);
+  List<String> dates = [];
+  rates.when(
+      data: (data) {
+        for (var i = 0; i < data.length; i++) {
+          dates.add(data[i].createdAt.day.toString());
+        }
+      },
+      error: (error, stackTrace) {},
+      loading: () {});
+  return dates;
+});
