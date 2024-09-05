@@ -9,6 +9,9 @@ ThemeData getAppTheme() {
       appBarTheme: const AppBarTheme(
         color: AppColors.blackBackgroundColor,
       ),
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+      ),
       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

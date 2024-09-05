@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:sudanese_currency/src/providers/calculator_screen_providers.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
@@ -14,7 +15,8 @@ class CalculationInputOutputWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputController = ref.watch(inputTxtControllerProvider);
     final outputController = ref.watch(outputTxtControllerProvider);
-    var textStyle = TextStyle(fontSize: 25.sp, height: 1.0);
+    var textStyle =
+        TextStyle(fontSize: 22.sp, height: 1.0, color: Colors.white);
     return Expanded(
       flex: 5,
       child: Container(
@@ -28,6 +30,7 @@ class CalculationInputOutputWidget extends ConsumerWidget {
         child: Padding(
           padding: EdgeInsets.all(appDefaultPadding),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,22 +41,52 @@ class CalculationInputOutputWidget extends ConsumerWidget {
               ),
               SizedBox(
                 height: 90.sp,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Column(
                   children: [
-                    CashTextFromField(controller: inputController),
-                    SizedBox(
-                      width: 42.sp,
-                      height: 42.sp,
-                      child: MaterialButton(
-                        padding: const EdgeInsets.all(0),
-                        color: const Color.fromARGB(255, 52, 52, 52),
-                        onPressed: () {},
-                        child: const Icon(Icons.swap_horiz_outlined),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CashTextFromField(controller: inputController),
+                        Container(
+                          width: 50.sp,
+                          height: 50.sp,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: MaterialButton(
+                            padding: const EdgeInsets.all(0),
+                            color: const Color.fromARGB(255, 52, 52, 52),
+                            onPressed: () {},
+                            child:
+                                const Icon(Iconsax.arrow_swap_horizontal_copy),
+                          ),
+                        ),
+                        CashTextFromField(controller: outputController),
+                      ],
                     ),
-                    CashTextFromField(controller: outputController),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 155.sp,
+                          child: const Divider(
+                            height: 10,
+                            color: Colors.green,
+                            thickness: 1,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 155.sp,
+                          child: const Divider(
+                            height: 10,
+                            color: Colors.transparent,
+                            thickness: 1,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
