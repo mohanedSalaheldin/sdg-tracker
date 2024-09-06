@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pattern_formatter/numeric_formatter.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 
 class CashTextFromField extends StatelessWidget {
@@ -17,11 +16,18 @@ class CashTextFromField extends StatelessWidget {
       width: 120.sp,
       child: TextFormField(
         keyboardType: TextInputType.none,
-        controller: controller,
+        // controller: controller,
+        controller: TextEditingController(),
         cursorColor: AppColors.greenColor,
         style: TextStyle(fontSize: 30.sp, color: Colors.white),
+        inputFormatters: [
+          // TODO: fix formatting issue
+          ThousandsFormatter(allowFraction: true),
+        ],
+        // initialValue: '00',
         decoration: const InputDecoration(
           border: InputBorder.none,
+
           focusedBorder: InputBorder.none,
           // border: UnderlineInputBorder(
           //     borderSide: BorderSide(color: Color.fromARGB(255, 46, 47, 45))),

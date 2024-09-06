@@ -13,6 +13,7 @@ class NumbersPadWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputController = ref.watch(inputTxtControllerProvider);
     final outputController = ref.watch(outputTxtControllerProvider);
+    final isSwapFromSudanesePound = ref.watch(isSwapFromSudanesePoundProvider);
     final List buttons = [
       "1",
       "2",
@@ -41,19 +42,11 @@ class NumbersPadWidget extends ConsumerWidget {
           buttons.length,
           (index) => InkWell(
             onTap: () {
-              if (!_isLastButton(index)) {
-                inputController.text = inputController.text + buttons[index];
-              } else {
-                inputController.text = inputController.text
-                    .substring(0, inputController.text.length - 1);
-              }
-              if (inputController.text.isNotEmpty) {
-                outputController.text =
-                    (double.parse(inputController.text) / 55)
-                        .toStringAsFixed(2);
-              } else {
-                outputController.text = "";
-              }
+              _addOrRemoveDigits(index, inputController, buttons);
+
+              ref
+                  .read(swapCalculationProvider.notifier)
+                  .calculateOutput(isSwapFromSudanesePound);
             },
             child: CircleAvatar(
               backgroundColor: Colors.white,
@@ -65,6 +58,16 @@ class NumbersPadWidget extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _addOrRemoveDigits(
+      int index, TextEditingController inputController, List<dynamic> buttons) {
+    if (!_isLastButton(index)) {
+      inputController.text = inputController.text + buttons[index];
+    } else {
+      inputController.text =
+          inputController.text.substring(0, inputController.text.length - 1);
+    }
   }
 
   Text _buildNumerKey(List<dynamic> buttons, int index) {

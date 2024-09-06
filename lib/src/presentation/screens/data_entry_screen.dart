@@ -12,7 +12,6 @@ class DataEntryScreen extends StatefulWidget {
 }
 
 class _DataEntryScreenState extends State<DataEntryScreen> {
-  
   final TextEditingController firstValueCtrl = TextEditingController();
   final TextEditingController secondValueCtrl = TextEditingController();
 

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:sudanese_currency/src/providers/calculator_screen_providers.dart';
+import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
 import 'package:sudanese_currency/src/shared/constants.dart';
 
@@ -15,6 +16,9 @@ class CalculationInputOutputWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputController = ref.watch(inputTxtControllerProvider);
     final outputController = ref.watch(outputTxtControllerProvider);
+    final isSwapFromSudanesePound = ref.watch(isSwapFromSudanesePoundProvider);
+    final todayExchangeRate =
+        ref.read(titleDataProvider).exchangeRate.toStringAsFixed(2);
     var textStyle =
         TextStyle(fontSize: 22.sp, height: 1.0, color: Colors.white);
     return Expanded(
@@ -35,8 +39,30 @@ class CalculationInputOutputWidget extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('SDG', style: textStyle),
-                  Text('EGP', style: textStyle),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    child: Text(
+                      isSwapFromSudanesePound ? 'SDG' : 'EGP',
+                      key: ValueKey(isSwapFromSudanesePound),
+                      style: textStyle,
+                    ),
+                  ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    child: Text(
+                      isSwapFromSudanesePound ? 'EGP' : 'SDG',
+                      key: ValueKey(!isSwapFromSudanesePound),
+                      style: textStyle,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -47,7 +73,10 @@ class CalculationInputOutputWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CashTextFromField(controller: inputController),
+                        CashTextFromField(
+                          controller: inputController,
+                     
+                        ),
                         Container(
                           width: 50.sp,
                           height: 50.sp,
@@ -58,12 +87,23 @@ class CalculationInputOutputWidget extends ConsumerWidget {
                           child: MaterialButton(
                             padding: const EdgeInsets.all(0),
                             color: const Color.fromARGB(255, 52, 52, 52),
-                            onPressed: () {},
+                            onPressed: () {
+                              ref
+                                  .read(
+                                      isSwapFromSudanesePoundProvider.notifier)
+                                  .state = !isSwapFromSudanesePound;
+                              String temp = inputController.text;
+                              inputController.text = outputController.text;
+                              outputController.text = temp;
+                            },
                             child:
                                 const Icon(Iconsax.arrow_swap_horizontal_copy),
                           ),
                         ),
-                        CashTextFromField(controller: outputController),
+                        CashTextFromField(
+                          controller: outputController,
+                          
+                        ),
                       ],
                     ),
                     Row(
