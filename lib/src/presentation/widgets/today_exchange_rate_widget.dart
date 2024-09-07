@@ -44,14 +44,14 @@ class TodayExchangeRateWidget extends ConsumerWidget {
                       ? Icons.arrow_upward
                       : Icons.arrow_downward,
                   size: 17,
-                  color: isPositive(titleData.increaseRate)
+                  color: !isPositive(titleData.increaseRate)
                       ? AppColors.greenColor
                       : Colors.redAccent,
                 ),
                 Text(
                   titleData.increaseRate,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: isPositive(titleData.increaseRate)
+                      color: !isPositive(titleData.increaseRate)
                           ? AppColors.greenColor
                           : Colors.redAccent,
                       fontSize: 14.sp),

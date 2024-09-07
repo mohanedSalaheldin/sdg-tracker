@@ -22,16 +22,18 @@ class DatabaseServices {
   Future<List<ExchageRate>>
       _fetchLastTenExchngeRatesAndParseThemIntoModels() async {
     final response = await _fetchLastTenExchngeRates();
-    print(response.first.toString());
+    // print(response.first.toString());
     return _parseIntoModels(response);
   }
 
   List<ExchageRate> _parseIntoModels(PostgrestList response) {
     List<ExchageRate> models = [];
     for (var i = 0; i < response.length; i++) {
+      // print(response[i]);
       models.add(ExchageRate.formJson(response[i]));
     }
-    print(models.last.toJson());
+
+    // print(models.last.t);
     return models;
   }
 

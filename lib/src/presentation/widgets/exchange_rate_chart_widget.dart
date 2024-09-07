@@ -167,7 +167,7 @@ class _LastDaysLineChartWidgetState
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
-            interval: 2,
+            interval: 1,
             showTitles: true,
             getTitlesWidget: (value, meta) {
               return Text(value.toInt().toString(),
@@ -189,8 +189,7 @@ class _LastDaysLineChartWidgetState
       ),
       minX: 0,
       maxX: 9,
-      minY: (statisticProvider.lower.todayExchangeRate).toInt() - 1
-      ,
+      minY: (statisticProvider.lower.todayExchangeRate).toInt() - 1,
       maxY: (statisticProvider.higher.todayExchangeRate).toInt() + 1,
       lineBarsData: [
         LineChartBarData(

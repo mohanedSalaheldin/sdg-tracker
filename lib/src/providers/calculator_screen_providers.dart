@@ -4,6 +4,7 @@ import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/providers/helper_classes/helper_classes.dart';
 
 final inputTxtControllerProvider = Provider<TextEditingController>((ref) {
+  
   final controller = TextEditingController();
   ref.onDispose(() => controller.dispose());
   return controller;
@@ -11,7 +12,7 @@ final inputTxtControllerProvider = Provider<TextEditingController>((ref) {
 
 final outputTxtControllerProvider = Provider<TextEditingController>((ref) {
   final controller = TextEditingController();
-  ref.onDispose(() => controller.dispose());
+  ref.onDispose(() => controller.dispose()) ;
   return controller;
 });
 
