@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sudanese_currency/src/presentation/widgets/numbers_pad_widget.dart';
-import 'package:sudanese_currency/src/presentation/widgets/swap_buttom_widget.dart';
-
 import 'package:sudanese_currency/src/shared/constants.dart';
-
 import '../../providers/calculator_screen_providers.dart';
 
 class NumPadAndSawpWidget extends ConsumerWidget {

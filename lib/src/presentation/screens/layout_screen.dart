@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:sudanese_currency/src/models/exchage_rate.dart';
-import 'package:sudanese_currency/src/presentation/screens/calculator_screen.dart';
-import 'package:sudanese_currency/src/presentation/screens/settings_screen.dart';
 import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
 import 'package:sudanese_currency/src/providers/layout_provider.dart';
 import 'package:sudanese_currency/src/shared/app_colors.dart';
-import 'package:sudanese_currency/src/shared/app_navigation.dart';
 
 class LayoutScreen extends ConsumerWidget {
   const LayoutScreen({super.key});

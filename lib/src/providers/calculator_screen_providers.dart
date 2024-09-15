@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudanese_currency/src/providers/exchange_rates_provider.dart';
-import 'package:sudanese_currency/src/providers/helper_classes/helper_classes.dart';
 
 final inputTxtControllerProvider = Provider<TextEditingController>((ref) {
   

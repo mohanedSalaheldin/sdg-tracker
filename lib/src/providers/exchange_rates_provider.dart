@@ -11,13 +11,9 @@ final exchageRatesProvider = FutureProvider<List<ExchageRate>>(
     DatabaseServices dbServices = GetIt.instance.get<DatabaseServices>();
     List<ExchageRate> res = await dbServices.getLastTenExchageRate();
     res.sort((a, b) => a.createdAt.compareTo(b.createdAt));
-
-    //------------------------------------------------------------------
     for (var element in res) {
       print(element.toJson());
     }
-
-    /******************************************************************************* */
     return res;
   },
 );
